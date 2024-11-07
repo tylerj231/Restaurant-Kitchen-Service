@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dish Types</h1>
+  <hr>
+  {% if dish_type_list %}
+    <ul>
+      {% for dish_type in dish_type_list %}
+        <li>{{ dish_type.name }}</li>
+      {% empty %} That's a bummer! There are no dishes at the moment 🥺
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Dishes</h1>
+  <hr>
+  {% if dish_list %}
+    <ul>
+      {% for dish in dish_list %}
+        <li>{{ dish.name }} ({{ dish.dish_type.name }}) <a href="{% url 'management_system:dish-detail' pk=dish.id %}">🔍</a>
+        </li>
+      {% empty %} That's a bummer! There are no dishes at the moment 🥺
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

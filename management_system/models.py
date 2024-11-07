@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Create your models here.
 class Dish(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
@@ -33,7 +32,7 @@ class Cook(AbstractUser):
     class Meta:
         verbose_name_plural = "cook"
         verbose_name_plural = "cooks"
-        ordering = ["username", "first_name", "last_name"]
+        ordering = ["first_name", "last_name", "username"]
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

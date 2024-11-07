@@ -4,9 +4,6 @@ from django.contrib.auth.admin import UserAdmin
 from management_system.models import Dish, DishType, Cook
 
 
-# Register your models here.
-
-
 @admin.register(Dish)
 class DishModelAdmin(admin.ModelAdmin):
     list_display = ("name", "price", "dish_type",)
@@ -19,4 +16,17 @@ class DishTypeModelAdmin(admin.ModelAdmin):
 
 @admin.register(Cook)
 class CookModelAdmin(UserAdmin):
-    list_display = ("username", "first_name", "last_name",)
+    list_display = UserAdmin.list_display + ("first_name", "last_name",)
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (
+            (
+                "Additional info",
+                {
+                    "fields": (
+                        "first_name",
+                        "last_name",
+                    )
+                },
+            ),
+        )
+    )

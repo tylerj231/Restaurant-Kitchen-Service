@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Cooks</h1>
+  <hr>
+  {% if cook_list %}
+    <ul>
+      {% for cook in cook_list %}
+        <li>{{ cook.first_name }} {{ cook.last_name }}</li>
+      {% empty %} That's a bummer! There are no cooks at the moment 🥺
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}
