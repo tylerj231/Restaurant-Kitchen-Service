@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Cooks</h1>
+  <h1>Cooks <a style="float:right" href="{% url 'management_system:cook-create' %}">➕</a></h1>
   <hr>
   {% if cook_list %}
     <ul>

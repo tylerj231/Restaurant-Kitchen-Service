@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Dishes</h1>
+  <h1>Dishes <a href="{% url 'management_system:dish-create' %}" style="float:right">➕</a></h1>
   <hr>
   {% if dish_list %}
     <ul>
