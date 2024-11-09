@@ -15,9 +15,9 @@ def index(request: HttpRequest) -> HttpResponse:
     cook_count = Cook.objects.count()
 
     context = {
-        'dish_count': dish_count,
-        'dish_type_count': dish_type_count,
-        'cook_count': cook_count,
+        "dish_count": dish_count,
+        "dish_type_count": dish_type_count,
+        "cook_count": cook_count,
     }
     return render(request, "index.html", context=context)
 
@@ -39,10 +39,24 @@ class DishCreateView(LoginRequiredMixin, generic.edit.CreateView):
     success_url = reverse_lazy("management_system:dish-list")
 
 
+class DishUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Dish
+    fields = "__all__"
+    template_name = "dish_form.html"
+    success_url = reverse_lazy("management_system:dish-list")
+
+
+class DishDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+    model = Dish
+    template_name = "dish_confirm_delete.html"
+    success_url = reverse_lazy("management_system:dish-list")
+
+
 class DishTypeListView(LoginRequiredMixin, generic.ListView):
     model = DishType
     template_name = "dish_type_list.html"
     context_object_name = "dish_type_list"
+
 
 class DishTypeCreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = DishType
@@ -55,8 +69,34 @@ class CookListView(LoginRequiredMixin, generic.ListView):
     model = Cook
     template_name = "cook_list.html"
 
+
+class CookDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Cook
+    template_name = "cook_detail.html"
+
+
+class CookUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Cook
+    fields = "__all__"
+    template_name = "cook_form.html"
+    success_url = reverse_lazy("management_system:cooks-list")
+
+
+class CookDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+    model = Cook
+    template_name = "cook_confirm_delete.html"
+    success_url = reverse_lazy("management_system:cooks-list")
+
+
 class CookCreateView(LoginRequiredMixin, generic.edit.CreateView):
     model = Cook
-    fields = ["username", "password", "first_name", "last_name", "email", "years_of_experience"]
+    fields = [
+        "username",
+        "password",
+        "first_name",
+        "last_name",
+        "email",
+        "years_of_experience",
+    ]
     template_name = "cook_form.html"
     success_url = reverse_lazy("management_system:cook-list")

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Cook Bio:</h1>
+
+  <ul>
+    <li>Name: {{ cook.first_name }}</li>
+    <li>Last name: {{ cook.last_name }}</li>
+    <li>Years of experience: {{ cook.years_of_experience }}</li>
+  </ul>
+  <a href="{% url 'management_system:cook-update' pk=cook.id %}">UPDATE</a>
+  <br>
+  <a href="{% url 'management_system:cook-delete' pk=cook.id %}">DELETE</a>
+{% endblock %}

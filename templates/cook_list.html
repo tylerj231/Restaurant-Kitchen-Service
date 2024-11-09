@@ -6,7 +6,8 @@
   {% if cook_list %}
     <ul>
       {% for cook in cook_list %}
-        <li>{{ cook.first_name }} {{ cook.last_name }}</li>
+        <li>{{ cook.first_name }} {{ cook.last_name }} <a
+            href="{% url 'management_system:cook-detail' pk=cook.id %}">🔍</a></li>
       {% empty %} That's a bummer! There are no cooks at the moment 🥺
       {% endfor %}
     </ul>

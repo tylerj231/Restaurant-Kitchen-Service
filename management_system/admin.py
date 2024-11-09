@@ -6,7 +6,11 @@ from management_system.models import Dish, DishType, Cook
 
 @admin.register(Dish)
 class DishModelAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "dish_type",)
+    list_display = (
+        "name",
+        "price",
+        "dish_type",
+    )
 
 
 @admin.register(DishType)
@@ -16,7 +20,10 @@ class DishTypeModelAdmin(admin.ModelAdmin):
 
 @admin.register(Cook)
 class CookModelAdmin(UserAdmin):
-    list_display = UserAdmin.list_display + ("first_name", "last_name",)
+    list_display = UserAdmin.list_display + (
+        "first_name",
+        "last_name",
+    )
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
             (

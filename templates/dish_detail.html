@@ -2,6 +2,15 @@
 
 {% block content %}
   <h1>{{ dish.name }}</h1>
-  <p>{{ dish.description }}</p>
-  <p>Cooks assigned {{ dish.cooks }}</p>
+  <ul>
+    <li>{{ dish.description }}</li>
+    <li>Cooks assigned:
+      {% for cook in dish.cooks.all %}
+        {{ cook.first_name }}
+      {% endfor %}
+    </li>
+  </ul>
+  <a style="float:right" href="{% url 'management_system:dish-update' pk=dish.id %}">UPDATE</a>
+  <br>
+  <a style="float:right" href="{% url 'management_system:dish-delete' pk=dish.id %}">DELETE</a>
 {% endblock %}
