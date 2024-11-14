@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container my-5">
+    <div class="card">
+      <img src="https://qudahalloween.com/cdn/shop/articles/Crazy-Dave-Costume_600x.png?v=1719396046"
+           class="card-img-top" alt="{{ cook.first_name }} {{ cook.last_name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ cook.first_name }} {{ cook.last_name }}</h5>
+        <p class="card-text">Years of experience: {{ cook.years_of_experience }}</p>
+        <div class="d-flex justify-content-end">
+          <a href="{% url 'management_system:cook-update' pk=cook.id %}" class="btn btn-primary me-2">Update</a>
+          <a href="{% url 'management_system:cook-delete' pk=cook.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

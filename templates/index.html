@@ -1,13 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1> Welcome to Restaurant Kitchen Service Home Page</h1>
-  <br>
+  <div class="container my-5">
+    <div class="text-center">
+      <h1 class="display-4 mb-4 animate__animated animate__fadeInDown">Welcome to Restaurant Kitchen Service</h1>
+      <p class="lead animate__animated animate__fadeInUp">
+        There are:
+      </p>
+    </div>
 
-  <h3>There are:</h3>
-  <br>
-  <p><strong>{{ dish_count }}</strong> delicious dishes</p>
-  <p><strong>{{ dish_type_count }}</strong> various dish types</p>
-  <p><strong>{{ cook_count }}</strong> professional cooks</p>
+    <div class="row justify-content-center mb-4">
+      <div class="col-auto animate__animated animate__bounceIn">
+        <div class="card text-bg-primary rounded-pill px-4 py-3">
+          <div class="card-body">
+            <h2 class="card-title mb-0">{{ dish_count }}</h2>
+            <p class="card-text mb-0">delicious dishes</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-auto animate__animated animate__bounceIn">
+        <div class="card text-bg-primary rounded-pill px-4 py-3">
+          <div class="card-body">
+            <h2 class="card-title mb-0">{{ dish_type_count }}</h2>
+            <p class="card-text mb-0">various dish types</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-auto animate__animated animate__bounceIn">
+        <div class="card text-bg-primary rounded-pill px-4 py-3">
+          <div class="card-body">
+            <h2 class="card-title mb-0">{{ cook_count }}</h2>
+            <p class="card-text mb-0">professional cooks</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="row">
+      {% for item in list_items %}
+        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.subheading }}</h5>
+              <p class="card-text">{{ item.content }}</p>
+              <span class="badge text-bg-primary rounded-pill">{{ item.count }}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
