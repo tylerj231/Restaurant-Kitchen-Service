@@ -28,21 +28,21 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "dish/dish_detail.html"
 
 
-class DishCreateView(LoginRequiredMixin, generic.edit.CreateView):
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
     model = Dish
     fields = "__all__"
     template_name = "dish/dish_form.html"
     success_url = reverse_lazy("management_system:dish-list")
 
 
-class DishUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+class DishUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Dish
     fields = "__all__"
     template_name = "dish/dish_form.html"
     success_url = reverse_lazy("management_system:dish-list")
 
 
-class DishDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Dish
     template_name = "dish/dish_confirm_delete.html"
     success_url = reverse_lazy("management_system:dish-list")
@@ -54,19 +54,20 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "dish_type_list"
 
 
-class DishTypeUpdateView(LoginRequiredMixin, generic.DetailView):
+class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = DishType
+    fields = "__all__"
     template_name = "dish_type/dish_type_form.html"
     success_url = reverse_lazy("management_system:dish-type-list")
 
 
-class DishTypeDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     template_name = "dish_type/dish_type_confirm_delete.html"
     success_url = reverse_lazy("management_system:dish-type-list")
 
 
-class DishTypeCreateView(LoginRequiredMixin, generic.edit.CreateView):
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = DishType
     fields = "__all__"
     template_name = "dish_type/dish_type_form.html"
@@ -83,7 +84,7 @@ class CookDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "cook/cook_detail.html"
 
 
-class CookUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+class CookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Cook
     fields = (
         "username",
@@ -97,13 +98,13 @@ class CookUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     success_url = reverse_lazy("management_system:cooks-list")
 
 
-class CookDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+class CookDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Cook
     template_name = "cook/cook_confirm_delete.html"
     success_url = reverse_lazy("management_system:cooks-list")
 
 
-class CookCreateView(LoginRequiredMixin, generic.edit.CreateView):
+class CookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Cook
     fields = [
         "username",
