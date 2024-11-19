@@ -23,6 +23,7 @@ class CookModelAdmin(UserAdmin):
     list_display = UserAdmin.list_display + (
         "first_name",
         "last_name",
+        "years_of_experience",
     )
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
@@ -32,6 +33,7 @@ class CookModelAdmin(UserAdmin):
                     "fields": (
                         "first_name",
                         "last_name",
+                        "years_of_experience",
                     )
                 },
             ),

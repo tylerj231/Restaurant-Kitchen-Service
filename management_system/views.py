@@ -5,7 +5,7 @@ from django.views import generic
 from management_system.models import Dish, DishType, Cook
 
 
-class HomePageView(LoginRequiredMixin, generic.TemplateView):
+class HomePageView(generic.TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
