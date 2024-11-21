@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from management_system.models import Dish, DishType
 
+User = get_user_model()
+
 
 class ModelsTests(TestCase):
 
@@ -34,12 +36,14 @@ class ModelsTests(TestCase):
         :return:
         """
 
-        cook = get_user_model().objects.create(
-            username="test",
-            password="<PASSWORD>",
+        cook = User.objects.create_user(
+            username="test-user",
             first_name="Andrew",
             last_name="Smith",
+            password="test12333",
+            years_of_experience=10,
         )
+
         self.assertEqual(str(cook), f"{cook.first_name} {cook.last_name}")
 
     def test_create_cook_with_years_of_experience(self):
@@ -48,15 +52,16 @@ class ModelsTests(TestCase):
         :return:
         """
 
-        username = "Test"
         password = "test12333"
-        years_of_experience = 10
 
-        cook = get_user_model().objects.create_user(
-            username=username,
+        cook = User.objects.create_user(
+            username="test123",
+            first_name="Andrew",
+            last_name="Smith",
             password=password,
-            years_of_experience=years_of_experience,
+            years_of_experience=10,
         )
-        self.assertEqual(cook.username, username)
+
+        self.assertEqual(cook.username, cook.username)
         self.assertTrue(cook.check_password(password))
-        self.assertEqual(cook.years_of_experience, years_of_experience)
+        self.assertEqual(cook.years_of_experience, 10)

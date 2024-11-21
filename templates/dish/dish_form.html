@@ -2,7 +2,7 @@
 {% load crispy_forms_filters %}
 {% block content %}
 
-  <div class="container my-5">
+  <div class="container mt-5">
     <h1>{% if object %}Update{% else %}Create{% endif %} Dish</h1>
     <form method="post">
       {% csrf_token %}

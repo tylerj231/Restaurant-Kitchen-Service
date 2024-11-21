@@ -22,6 +22,8 @@ class AdminSiteTest(TestCase):
         url = reverse("admin:management_system_cook_changelist")
         response = self.client.get(url)
         self.assertContains(response, self.cook.years_of_experience)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.cook.years_of_experience, 25)
 
     def test_cook_years_of_experience_listed_on_detail(self):
         """
@@ -31,6 +33,8 @@ class AdminSiteTest(TestCase):
         url = reverse("admin:management_system_cook_change", args=[self.cook.pk])
         response = self.client.get(url)
         self.assertContains(response, self.cook.years_of_experience)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.cook.years_of_experience, 25)
 
     def test_if_years_of_experience_listed_in_add_info(self):
         """
@@ -40,3 +44,5 @@ class AdminSiteTest(TestCase):
         url = reverse("admin:management_system_cook_add")
         response = self.client.get(url)
         self.assertContains(response, "years_of_experience")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.cook.years_of_experience, 25)
