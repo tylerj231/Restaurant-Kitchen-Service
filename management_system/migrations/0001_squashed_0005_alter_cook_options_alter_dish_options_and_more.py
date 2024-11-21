@@ -9,15 +9,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
-    replaces = [
-        ("management_system", "0001_initial"),
-        ("management_system", "0002_alter_cook_years_of_experience"),
-        ("management_system", "0003_alter_cook_options"),
-        ("management_system", "0004_alter_cook_options_alter_dish_options"),
-        ("management_system", "0005_alter_cook_options_alter_dish_options_and_more"),
-    ]
-
     initial = True
 
     dependencies = [
