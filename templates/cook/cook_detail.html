@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  {% load static %}
+
+  <div class="container my-5">
+    <div class="card">
+      <img src="{% static 'images/Crazy-Dave-Costume_600x.jpg' %}"
+           class="card-img-top img-fluid w-50 mx-auto" alt="{{ cook.first_name }} {{ cook.last_name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ cook.first_name }} {{ cook.last_name }}</h5>
+        <p class="card-text">{% if cook.years_of_experience %}Years of experience:
+          {{ cook.years_of_experience }} {% endif %}</p>
+        <div class="d-flex justify-content-end">
+          <a href="{% url 'management_system:cook-update' pk=cook.id %}" class="btn btn-primary me-2">Update</a>
+          <a href="{% url 'management_system:cook-delete' pk=cook.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

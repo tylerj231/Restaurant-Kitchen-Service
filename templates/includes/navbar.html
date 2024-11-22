@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'management_system:index' %}">Restaurant Kitchen Service</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'management_system:index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'management_system:dish-list' %}">Dishes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'management_system:dish-type-list' %}">Dish Types</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'management_system:cooks-list' %}">Cooks</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ user.get_username }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <form class="dropdown-item" method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-link p-0">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
