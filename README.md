@@ -28,4 +28,4 @@ python manage.py runserver # runs Django Server. Or configure your IDE to run it
 
 ## Demo
 
-![Website Interface - Dishes Page](demo.png)
+![Website Interface - Dishes page](demo.png)
