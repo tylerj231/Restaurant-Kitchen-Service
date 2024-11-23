@@ -348,5 +348,6 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-# Mac OS files
+# Mac OS files & others
 .DS_Store
+dump.json

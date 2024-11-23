@@ -4,15 +4,13 @@ from pathlib import Path
 from django.conf.global_settings import STATIC_ROOT
 from dotenv import load_dotenv
 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(str(BASE_DIR / '.env'))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != 'False'
-
-ALLOWED_HOSTS = ["127.0.0.1"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -31,6 +29,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -59,13 +58,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "kitchen_service.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -90,6 +82,8 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
+
+STATIC_ROOT = "staticfiles/"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
