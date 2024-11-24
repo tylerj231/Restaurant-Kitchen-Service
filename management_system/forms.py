@@ -43,3 +43,17 @@ class DishTypeSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={"placeholder": "Search by dish type"}),
     )
+
+
+class RegistrationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Cook
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "years_of_experience",
+            "email",
+        )
+        widgets = {
+            "password": forms.PasswordInput(render_value=False),
+        }

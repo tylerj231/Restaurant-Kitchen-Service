@@ -1,6 +1,8 @@
 from lib2to3.fixes.fix_input import context
 
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -8,9 +10,10 @@ from management_system.forms import (
     CookCreationForm,
     CookSearchForm,
     DishSearchForm,
-    DishTypeSearchForm,
+    DishTypeSearchForm, RegistrationForm,
 )
 from management_system.models import Dish, DishType, Cook
+from management_system.tests.test_models.test_models import User
 
 
 class HomePageView(generic.TemplateView):
@@ -158,3 +161,10 @@ class CookCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = CookCreationForm
     template_name = "cook/cook_form.html"
     success_url = reverse_lazy("management_system:cooks-list")
+
+class CookRegisterView(SuccessMessageMixin, generic.CreateView):
+    model = Cook
+    form_class = RegistrationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/register.html"
+    success_message = "You have successfully registered."

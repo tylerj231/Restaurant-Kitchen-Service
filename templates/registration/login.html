@@ -3,44 +3,124 @@
 
   <div class="container my-5">
     <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title mb-4">Log In</h1>
-            {% if form.errors %}
-              <div class="alert alert-danger">
-                Your username and password didn't match. Please try again.
-              </div>
-            {% endif %}
-            {% if next %}
-              {% if user.is_authenticated %}
-                <div class="alert alert-warning">
-                  Your account doesn't have access to this page. Please log in with an account that has access.
-                </div>
-              {% else %}
-                <div class="alert alert-info">
-                  Please log in to access this page.
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4">Log In</h2>
+
+            <form method="post" novalidate>
+              {% csrf_token %}
+
+              {% if form.errors %}
+                <div class="alert alert-danger">
+                  <p class="mb-0">Your username and password didn't match. Please try again.</p>
                 </div>
               {% endif %}
-            {% endif %}
-            <form method="post">
-              {% csrf_token %}
+
+              {% if next %}
+                {% if user.is_authenticated %}
+                  <div class="alert alert-warning">
+                    <p class="mb-0">Your account doesn't have access to this page. Please log in with an account that
+                      has access.</p>
+                  </div>
+                {% else %}
+                  <div class="alert alert-info">
+                    <p class="mb-0">Please log in to access this page.</p>
+                  </div>
+                {% endif %}
+              {% endif %}
+
               <div class="mb-3">
-                {{ form.username.label_tag }}
+                <label class="form-label">Username</label>
                 {{ form.username }}
+                <style>
+                    #id_username {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
               </div>
-              <div class="mb-3">
-                {{ form.password.label_tag }}
+
+              <div class="mb-4">
+                <label class="form-label">Password</label>
                 {{ form.password }}
+                <style>
+                    #id_password {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
+
+              <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Log In</button>
+                <a href="{% url 'management_system:register' %}" class="btn btn-outline-secondary">Create Account</a>
               </div>
             </form>
+
+            <div class="text-center mt-4">
+              <p class="mb-0">Don't have an account? <a href="{% url 'management_system:register' %}"
+                                                        class="text-decoration-none">Sign up
+                here</a></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <style>
+      /* Additional styling for form fields focus state */
+      input:focus {
+          outline: none;
+          border-color: #86b7fe;
+          box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+      }
+
+      /* Style for error messages */
+      .alert-danger {
+          background-color: #f8d7da;
+          border-color: #f5c2c7;
+          color: #842029;
+      }
+
+      .alert-warning {
+          background-color: #fff3cd;
+          border-color: #ffecb5;
+          color: #664d03;
+      }
+
+      .alert-info {
+          background-color: #cff4fc;
+          border-color: #b6effb;
+          color: #055160;
+      }
+
+      .card {
+          border: none;
+      }
+
+      .card-body {
+          padding: 2rem;
+      }
+
+      /* Style for links */
+      a.text-decoration-none {
+          color: #0d6efd;
+      }
+
+      a.text-decoration-none:hover {
+          color: #0a58ca;
+          text-decoration: underline !important;
+      }
+  </style>
 
 {% endblock %}

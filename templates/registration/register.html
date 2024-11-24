@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card shadow">
+          <div class="card-body p-4">
+            <h2 class="card-title text-center mb-4">Create Account</h2>
+
+            <form method="post" novalidate>
+              {% csrf_token %}
+
+              {% if form.errors %}
+                <div class="alert alert-danger">
+                  <ul class="mb-0">
+                    {% for field in form %}
+                      {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    {% endfor %}
+                    {% for error in form.non_field_errors %}
+                      <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">First Name</label>
+                  {{ form.first_name }}
+                  <style>
+                      #id_first_name {
+                          width: 100%;
+                          padding: 0.375rem 0.75rem;
+                          font-size: 1rem;
+                          border: 1px solid #ced4da;
+                          border-radius: 0.25rem;
+                          transition: border-color 0.15s ease-in-out;
+                      }
+                  </style>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Last Name</label>
+                  {{ form.last_name }}
+                  <style>
+                      #id_last_name {
+                          width: 100%;
+                          padding: 0.375rem 0.75rem;
+                          font-size: 1rem;
+                          border: 1px solid #ced4da;
+                          border-radius: 0.25rem;
+                          transition: border-color 0.15s ease-in-out;
+                      }
+                  </style>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+                {% if form.username.help_text %}
+                  <div class="form-text small text-muted">{{ form.username.help_text }}</div>
+                {% endif %}
+                <style>
+                    #id_username {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+                <style>
+                    #id_email {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Years of Experience</label>
+                {{ form.years_of_experience }}
+                <style>
+                    #id_years_of_experience {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password1 }}
+                {% if form.password1.help_text %}
+                  <div class="form-text small text-muted">{{ form.password1.help_text|safe }}</div>
+                {% endif %}
+                <style>
+                    #id_password1 {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Confirm Password</label>
+                {{ form.password2 }}
+                {% if form.password2.help_text %}
+                  <div class="form-text small text-muted">{{ form.password2.help_text }}</div>
+                {% endif %}
+                <style>
+                    #id_password2 {
+                        width: 100%;
+                        padding: 0.375rem 0.75rem;
+                        font-size: 1rem;
+                        border: 1px solid #ced4da;
+                        border-radius: 0.25rem;
+                        transition: border-color 0.15s ease-in-out;
+                    }
+                </style>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Register</button>
+                <a href="{% url 'login' %}" class="btn btn-outline-secondary">Back to Login</a>
+              </div>
+            </form>
+
+            <div class="text-center mt-4">
+              <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Log in
+                here</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+      /* Additional styling for form fields focus state */
+      input:focus {
+          outline: none;
+          border-color: #86b7fe;
+          box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+      }
+
+      /* Style for help text */
+      .form-text {
+          color: #6c757d;
+          margin-top: 0.25rem;
+          font-size: 0.875rem;
+      }
+
+      /* Style for error messages */
+      .alert-danger {
+          background-color: #f8d7da;
+          border-color: #f5c2c7;
+          color: #842029;
+      }
+
+      .alert-danger ul {
+          padding-left: 1rem;
+          margin-bottom: 0;
+      }
+  </style>
+
+{% endblock %}
